@@ -7,30 +7,37 @@ const badgeStyles: Record<string, string> = {
   sale: 'bg-orange-50 text-orange-800 border border-orange-200',
 };
 
+const categoryLabel: Record<string, string> = {
+  multivitamins: 'multivitamins',
+  calcium: 'calcium & bone',
+  energy: 'energy',
+};
+
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-gray-300 hover:shadow-sm transition-all duration-150 flex flex-col">
-      <div className="h-[148px] bg-gray-50 border-b border-gray-100 flex items-center justify-center p-2">
-        <ProductImage
-          barcode={product.barcode}
-          directImage={product.directImage}
-          name={product.name}
-        />
+
+      {/* Image */}
+      <div className="h-[160px] bg-gray-50 border-b border-gray-100 overflow-hidden">
+        <ProductImage image={product.image} name={product.name} />
       </div>
 
+      {/* Content */}
       <div className="p-3 flex flex-col flex-1">
         {product.badge && (
-          <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full mb-1.5 w-fit ${badgeStyles[product.badge]}`}>
+          <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full mb-2 w-fit ${badgeStyles[product.badge]}`}>
             {product.badgeLabel}
           </span>
         )}
+
         <div className="flex items-center gap-1.5 mb-1">
-          <p className="text-[10px] font-bold tracking-widest uppercase text-emerald-600">
+          <span className="text-[10px] font-bold tracking-widest uppercase text-emerald-600">
             {product.brand}
-          </p>
-          <span className="text-gray-200">·</span>
-          <p className="text-[10px] text-gray-400">{product.category}</p>
+          </span>
+          <span className="text-gray-200 text-[10px]">·</span>
+          <span className="text-[10px] text-gray-400">{categoryLabel[product.category]}</span>
         </div>
+
         <p className="text-[13px] font-semibold text-gray-900 leading-snug mb-1.5">
           {product.name}
         </p>
@@ -38,7 +45,7 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.desc}
         </p>
 
-        <div className="flex items-end justify-between mt-auto pt-1 border-t border-gray-50">
+        <div className="flex items-end justify-between pt-2 border-t border-gray-50">
           <div>
             <div className="flex items-baseline gap-1.5">
               <span className="text-[15px] font-bold text-gray-900">{product.price}</span>

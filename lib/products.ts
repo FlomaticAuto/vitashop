@@ -9,8 +9,7 @@ export interface Product {
   originalPrice?: string;
   badge: BadgeType;
   badgeLabel: string;
-  barcode: string;
-  directImage: string;
+  image: string;   // local /public/products/ path
   category: string;
 }
 
@@ -23,8 +22,7 @@ export const products: Product[] = [
     price: 'R209.99',
     badge: 'popular',
     badgeLabel: 'Best seller',
-    barcode: '6001605004534',
-    directImage: 'https://images.openfoodfacts.org/images/products/600/160/500/4534/front_en.5.400.jpg',
+    image: '/products/centrum-active.jpg',
     category: 'multivitamins',
   },
   {
@@ -35,8 +33,7 @@ export const products: Product[] = [
     price: 'R219.99',
     badge: 'new',
     badgeLabel: 'New',
-    barcode: '6001605005258',
-    directImage: 'https://images.openfoodfacts.org/images/products/600/160/500/5258/front_en.3.400.jpg',
+    image: '/products/centrum-lutein.jpg',
     category: 'multivitamins',
   },
   {
@@ -47,8 +44,7 @@ export const products: Product[] = [
     price: 'R149.99',
     badge: 'popular',
     badgeLabel: 'Best seller',
-    barcode: '7613035950337',
-    directImage: 'https://images.openfoodfacts.org/images/products/761/303/595/0337/front_en.14.400.jpg',
+    image: '/products/berocca-performance.jpg',
     category: 'energy',
   },
   {
@@ -59,8 +55,7 @@ export const products: Product[] = [
     price: 'R139.99',
     badge: null,
     badgeLabel: '',
-    barcode: '7613035950320',
-    directImage: 'https://images.openfoodfacts.org/images/products/761/303/595/0320/front_en.8.400.jpg',
+    image: '/products/berocca-boost.jpg',
     category: 'energy',
   },
   {
@@ -71,8 +66,7 @@ export const products: Product[] = [
     price: 'R249.99',
     badge: null,
     badgeLabel: '',
-    barcode: '6009705530016',
-    directImage: 'https://images.openfoodfacts.org/images/products/600/970/553/0016/front.3.400.jpg',
+    image: '/products/staminogro.jpg',
     category: 'multivitamins',
   },
   {
@@ -83,8 +77,7 @@ export const products: Product[] = [
     price: 'R219.99',
     badge: 'new',
     badgeLabel: 'New',
-    barcode: '6009517400076',
-    directImage: 'https://images.openfoodfacts.org/images/products/600/951/740/0076/front.3.400.jpg',
+    image: '/products/biogen.jpg',
     category: 'multivitamins',
   },
   {
@@ -95,8 +88,7 @@ export const products: Product[] = [
     price: 'R169.99',
     badge: 'popular',
     badgeLabel: 'Popular',
-    barcode: '0300054340',
-    directImage: 'https://images.openfoodfacts.org/images/products/000/030/005/4340/front_en.14.400.jpg',
+    image: '/products/caltrate.jpg',
     category: 'calcium',
   },
   {
@@ -108,8 +100,7 @@ export const products: Product[] = [
     originalPrice: 'R109.00',
     badge: 'sale',
     badgeLabel: 'On special',
-    barcode: '6001205003440',
-    directImage: 'https://images.openfoodfacts.org/images/products/600/120/500/3440/front.3.400.jpg',
+    image: '/products/calc-vita.jpg',
     category: 'calcium',
   },
   {
@@ -120,8 +111,7 @@ export const products: Product[] = [
     price: 'R299.99',
     badge: null,
     badgeLabel: '',
-    barcode: '6009803410019',
-    directImage: 'https://images.openfoodfacts.org/images/products/600/980/341/0019/front.3.400.jpg',
+    image: '/products/menacal.jpg',
     category: 'calcium',
   },
   {
@@ -132,8 +122,7 @@ export const products: Product[] = [
     price: 'R129.99',
     badge: null,
     badgeLabel: '',
-    barcode: '6009660452301',
-    directImage: 'https://images.openfoodfacts.org/images/products/600/966/045/2301/front.3.400.jpg',
+    image: '/products/ciplaton.jpg',
     category: 'energy',
   },
   {
@@ -144,8 +133,7 @@ export const products: Product[] = [
     price: 'R179.99',
     badge: 'popular',
     badgeLabel: 'Popular',
-    barcode: '6001205040360',
-    directImage: 'https://images.openfoodfacts.org/images/products/600/120/504/0360/front.3.400.jpg',
+    image: '/products/vitaforce.jpg',
     category: 'multivitamins',
   },
   {
@@ -156,8 +144,7 @@ export const products: Product[] = [
     price: 'R239.99',
     badge: null,
     badgeLabel: '',
-    barcode: '7611841000017',
-    directImage: 'https://images.openfoodfacts.org/images/products/761/184/100/0017/front_en.4.400.jpg',
+    image: '/products/bio-strath.jpg',
     category: 'multivitamins',
   },
 ];
