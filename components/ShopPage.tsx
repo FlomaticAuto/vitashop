@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { products } from '@/lib/products';
 import { useCart } from '@/lib/cartStore';
 import { useAuth } from '@/context/AuthContext';
@@ -15,7 +16,7 @@ export default function ShopPage() {
   const [search, setSearch] = useState('');
   const [authOpen, setAuthOpen] = useState(false);
   const [authTab, setAuthTab] = useState<'signin' | 'signup'>('signin');
-  const { openCart, count } = useCart();
+  const { count } = useCart();
   const { user, loading } = useAuth();
 
   const filtered = useMemo(() => products.filter((p) => {
@@ -75,8 +76,8 @@ export default function ShopPage() {
             )}
 
             {/* Cart */}
-            <button
-              onClick={openCart}
+            <Link
+              href="/cart"
               className="flex items-center gap-1.5 border border-gray-200 rounded-lg px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-50 transition-colors"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -90,7 +91,7 @@ export default function ShopPage() {
                   {cartCount}
                 </span>
               )}
-            </button>
+            </Link>
           </div>
         </header>
 
