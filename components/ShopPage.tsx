@@ -3,76 +3,95 @@
 import { useState, useMemo } from 'react';
 import { products } from '@/lib/products';
 import { useCart } from '@/lib/cartStore';
+import { useAuth } from '@/context/AuthContext';
 import ProductCard from '@/components/ProductCard';
 import CategoryBar from '@/components/CategoryBar';
 import CartDrawer from '@/components/CartDrawer';
+import AuthModal from '@/components/AuthModal';
+import UserMenu from '@/components/UserMenu';
 
 export default function ShopPage() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [search, setSearch] = useState('');
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authTab, setAuthTab] = useState<'signin' | 'signup'>('signin');
   const { openCart, count } = useCart();
+  const { user, loading } = useAuth();
 
-  const filtered = useMemo(() => {
-    return products.filter((p) => {
-      const matchesCat = activeCategory === 'all' || p.category === activeCategory;
-      const matchesSearch =
-        search.trim() === '' ||
-        p.name.toLowerCase().includes(search.toLowerCase()) ||
-        p.brand.toLowerCase().includes(search.toLowerCase());
-      return matchesCat && matchesSearch;
-    });
-  }, [activeCategory, search]);
+  const filtered = useMemo(() => products.filter((p) => {
+    const matchesCat = activeCategory === 'all' || p.category === activeCategory;
+    const matchesSearch = search.trim() === '' ||
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.brand.toLowerCase().includes(search.toLowerCase());
+    return matchesCat && matchesSearch;
+  }), [activeCategory, search]);
 
   const cartCount = count();
 
   return (
     <>
       <CartDrawer />
+      <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} defaultTab={authTab} />
 
       <div className="min-h-screen bg-gray-50">
 
         {/* Top bar */}
         <header className="sticky top-0 z-20 bg-white border-b border-gray-100 h-14 flex items-center justify-between px-6 gap-4">
           <div className="text-[18px] font-semibold text-gray-900 flex-shrink-0">
-            Vita<span className="text-emerald-600">Shop</span>
+            Super<span className="text-emerald-600">Buys</span>
           </div>
 
           <div className="flex-1 max-w-xs flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 h-9">
             <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
             </svg>
             <input
-              type="text"
-              placeholder="Search vitamins, supplements..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              type="text" placeholder="Search vitamins, supplements..."
+              value={search} onChange={(e) => setSearch(e.target.value)}
               className="bg-transparent text-[13px] text-gray-700 outline-none w-full placeholder:text-gray-400"
             />
             {search && (
-              <button onClick={() => setSearch('')} className="text-gray-300 hover:text-gray-500 flex-shrink-0">
+              <button onClick={() => setSearch('')} className="text-gray-300 hover:text-gray-500">
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
               </button>
             )}
           </div>
 
-          <button
-            onClick={openCart}
-            className="flex-shrink-0 flex items-center gap-1.5 border border-gray-200 rounded-lg px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-50 transition-colors relative"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 0 1-8 0" />
-            </svg>
-            <span className="hidden sm:inline">Cart</span>
-            {cartCount > 0 && (
-              <span className="bg-emerald-600 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] px-1 flex items-center justify-center">
-                {cartCount}
-              </span>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Auth area */}
+            {!loading && (
+              user
+                ? <UserMenu />
+                : (
+                  <button
+                    onClick={() => { setAuthTab('signin'); setAuthOpen(true); }}
+                    className="text-[12px] font-medium text-gray-600 hover:text-emerald-600 border border-gray-200 rounded-lg px-3 py-1.5 transition-colors hidden sm:block"
+                  >
+                    Sign in
+                  </button>
+                )
             )}
-          </button>
+
+            {/* Cart */}
+            <button
+              onClick={openCart}
+              className="flex items-center gap-1.5 border border-gray-200 rounded-lg px-3 py-1.5 text-[13px] text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+              <span className="hidden sm:inline">Cart</span>
+              {cartCount > 0 && (
+                <span className="bg-emerald-600 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] px-1 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+          </div>
         </header>
 
         {/* Hero */}
@@ -84,12 +103,22 @@ export default function ShopPage() {
           <p className="text-[13px] text-gray-500 max-w-md mx-auto mb-4">
             South Africa&apos;s trusted source for vitamins, minerals &amp; supplements — direct from leading brands.
           </p>
-          <button
-            onClick={() => setSearch('')}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white text-[13px] font-medium px-5 py-2.5 rounded-lg transition-colors"
-          >
-            Shop all products
-          </button>
+          <div className="flex items-center justify-center gap-3">
+            <button
+              onClick={() => { setSearch(''); setActiveCategory('all'); }}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white text-[13px] font-medium px-5 py-2.5 rounded-lg transition-colors"
+            >
+              Shop all products
+            </button>
+            {!user && (
+              <button
+                onClick={() => { setAuthTab('signup'); setAuthOpen(true); }}
+                className="border border-gray-200 hover:border-emerald-300 text-gray-700 text-[13px] font-medium px-5 py-2.5 rounded-lg transition-colors"
+              >
+                Create account
+              </button>
+            )}
+          </div>
         </section>
 
         {/* Category filter */}
@@ -97,18 +126,11 @@ export default function ShopPage() {
 
         {/* Label */}
         <div className="px-6 pt-5 pb-2 flex items-center justify-between">
-          <p className="text-[11px] font-semibold text-gray-400 tracking-widest uppercase">
-            Featured products
-          </p>
+          <p className="text-[11px] font-semibold text-gray-400 tracking-widest uppercase">Featured products</p>
           {(search || activeCategory !== 'all') && (
             <p className="text-[11px] text-gray-400">
               {filtered.length} result{filtered.length !== 1 ? 's' : ''}
-              <button
-                onClick={() => { setSearch(''); setActiveCategory('all'); }}
-                className="ml-2 text-emerald-600 hover:underline"
-              >
-                Clear
-              </button>
+              <button onClick={() => { setSearch(''); setActiveCategory('all'); }} className="ml-2 text-emerald-600 hover:underline">Clear</button>
             </p>
           )}
         </div>
@@ -146,7 +168,7 @@ export default function ShopPage() {
             ))}
           </div>
           <div className="text-center py-3 border-t border-gray-100">
-            <p className="text-[11px] text-gray-400">© 2025 VitaShop (Pty) Ltd · Johannesburg, South Africa</p>
+            <p className="text-[11px] text-gray-400">© 2025 SuperBuys (Pty) Ltd · Johannesburg, South Africa</p>
           </div>
         </footer>
       </div>

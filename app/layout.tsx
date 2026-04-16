@@ -1,16 +1,20 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { AuthProvider } from '@/context/AuthContext';
 
 export const metadata: Metadata = {
-  title: 'VitaShop — Vitamins & Supplements | South Africa',
-  description:
-    "South Africa's trusted online source for vitamins, minerals and supplements. Centrum, Berocca, Staminogro, Bio-Strath, Caltrate and more.",
+  title: 'SuperBuys — Vitamins & Supplements | South Africa',
+  description: "South Africa's trusted online source for vitamins, minerals and supplements.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }
