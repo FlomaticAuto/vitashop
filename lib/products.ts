@@ -10,7 +10,7 @@ export interface Product {
   badge: BadgeType;
   badgeLabel: string;
   barcode: string;
-  fallbackImage: string;
+  directImage: string;
   category: string;
 }
 
@@ -24,19 +24,19 @@ export const products: Product[] = [
     badge: 'popular',
     badgeLabel: 'Best seller',
     barcode: '6001605004534',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/600/160/500/4534/front_en.5.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/600/160/500/4534/front_en.5.400.jpg',
     category: 'multivitamins',
   },
   {
     id: 'centrum-lutein',
     brand: 'Centrum',
-    name: 'Centrum with Lutein Eye Health',
+    name: 'Centrum with Lutein',
     desc: 'Multivitamin enriched with Lutein & Zeaxanthin for vision & immune support. 30 tabs.',
     price: 'R219.99',
     badge: 'new',
     badgeLabel: 'New',
     barcode: '6001605005258',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/600/160/500/5258/front_en.3.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/600/160/500/5258/front_en.3.400.jpg',
     category: 'multivitamins',
   },
   {
@@ -48,7 +48,7 @@ export const products: Product[] = [
     badge: 'popular',
     badgeLabel: 'Best seller',
     barcode: '7613035950337',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/761/303/595/0337/front_en.14.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/761/303/595/0337/front_en.14.400.jpg',
     category: 'energy',
   },
   {
@@ -60,7 +60,7 @@ export const products: Product[] = [
     badge: null,
     badgeLabel: '',
     barcode: '7613035950320',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/761/303/595/0320/front_en.8.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/761/303/595/0320/front_en.8.400.jpg',
     category: 'energy',
   },
   {
@@ -72,7 +72,7 @@ export const products: Product[] = [
     badge: null,
     badgeLabel: '',
     barcode: '6009705530016',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/600/970/553/0016/front.3.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/600/970/553/0016/front.3.400.jpg',
     category: 'multivitamins',
   },
   {
@@ -84,7 +84,7 @@ export const products: Product[] = [
     badge: 'new',
     badgeLabel: 'New',
     barcode: '6009517400076',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/600/951/740/0076/front.3.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/600/951/740/0076/front.3.400.jpg',
     category: 'multivitamins',
   },
   {
@@ -96,20 +96,20 @@ export const products: Product[] = [
     badge: 'popular',
     badgeLabel: 'Popular',
     barcode: '0300054340',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/000/030/005/4340/front_en.14.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/000/030/005/4340/front_en.14.400.jpg',
     category: 'calcium',
   },
   {
     id: 'calc-vita',
     brand: 'Cal-C-Vita',
     name: 'Cal-C-Vita Effervescent',
-    desc: 'Calcium + Vitamin C effervescent tablets. Immune & bone support. Citrus flavour. 20 tabs.',
+    desc: 'Calcium + Vitamin C effervescent. Immune & bone support. Citrus flavour. 20 tabs.',
     price: 'R89.99',
     originalPrice: 'R109.00',
     badge: 'sale',
     badgeLabel: 'On special',
     barcode: '6001205003440',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/600/120/500/3440/front.3.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/600/120/500/3440/front.3.400.jpg',
     category: 'calcium',
   },
   {
@@ -121,7 +121,7 @@ export const products: Product[] = [
     badge: null,
     badgeLabel: '',
     barcode: '6009803410019',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/600/980/341/0019/front.3.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/600/980/341/0019/front.3.400.jpg',
     category: 'calcium',
   },
   {
@@ -133,7 +133,7 @@ export const products: Product[] = [
     badge: null,
     badgeLabel: '',
     barcode: '6009660452301',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/600/966/045/2301/front.3.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/600/966/045/2301/front.3.400.jpg',
     category: 'energy',
   },
   {
@@ -145,7 +145,7 @@ export const products: Product[] = [
     badge: 'popular',
     badgeLabel: 'Popular',
     barcode: '6001205040360',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/600/120/504/0360/front.3.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/600/120/504/0360/front.3.400.jpg',
     category: 'multivitamins',
   },
   {
@@ -157,7 +157,7 @@ export const products: Product[] = [
     badge: null,
     badgeLabel: '',
     barcode: '7611841000017',
-    fallbackImage: 'https://images.openfoodfacts.org/images/products/761/184/100/0017/front_en.4.400.jpg',
+    directImage: 'https://images.openfoodfacts.org/images/products/761/184/100/0017/front_en.4.400.jpg',
     category: 'multivitamins',
   },
 ];
